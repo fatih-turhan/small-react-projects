@@ -1,0 +1,108 @@
+.section-center {
+  max-width: 900px;
+}
+
+/* 
+=========
+Reviews
+=========
+*/
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #334;
+}
+
+.reviews {
+  text-align: center;
+}
+.section-heading {
+  margin-bottom: 3rem;
+}
+.section-heading p {
+  color: white;
+  text-transform: uppercase;
+  font-size: 2.2rem;
+  margin-bottom: 1.85rem;
+}
+.line {
+  background-color: #7f7f7f;
+  width: 7.5rem;
+  height: 0.15rem;
+  margin: 0 auto;
+}
+.contents img {
+  width: 8.5rem;
+  height: 8.5rem;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  object-fit: cover;
+}
+.text {
+  font-size: 1.1rem;
+  line-height: 2rem;
+  letter-spacing: 0.1rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+.person-company {
+  color: white;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+}
+.person {
+  color: #fb0;
+  font-weight: 700;
+}
+.company {
+  color: var(--clr-grey-6);
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.button {
+  width: 1rem;
+  height: 1rem;
+  /* background: #fb0; */
+  border: 0.15rem solid #fb0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-right: 0.5rem;
+}
+.button.active {
+  background: #fb0;
+}
+.prev-next-btns,
+.random-btn {
+  margin-top: 1rem;
+}
+.prev-next-btns {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+}
+.prev-btn,
+.next-btn {
+  cursor: pointer;
+  font-size: 2.5rem;
+  border: none;
+  background: none;
+  color: white;
+}
+.random-btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  text-transform: capitalize;
+  border: 0.1rem solid white;
+  padding: 1rem;
+}
