@@ -41,29 +41,29 @@ const Contents = () => {
     setIndex(checkNumber(random));
   };
 
-  useEffect(() => {
-    const btns = [...document.querySelectorAll(".button")];
-    btns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = Number(btn.dataset.id) - 1;
-        // console.log(id);
-        btns.forEach((btn) => btn.classList.remove("active"));
-        btn.classList.add("active");
-        setIndex(id);
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   const btns = [...document.querySelectorAll(".button")];
+  //   btns.forEach((btn) => {
+  //     btn.addEventListener("click", () => {
+  //       const id = Number(btn.dataset.id) - 1;
+  //       // console.log(id);
+  //       btns.forEach((btn) => btn.classList.remove("active"));
+  //       btn.classList.add("active");
+  //       setIndex(id);
+  //     });
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    const btns = [...document.querySelectorAll(".button")];
-    btns.forEach((btn) => {
-      const id = Number(btn.dataset.id) - 1;
-      if (id === index) {
-        btns.forEach((btn) => btn.classList.remove("active"));
-        btn.classList.add("active");
-      }
-    });
-  });
+  // useEffect(() => {
+  //   const btns = [...document.querySelectorAll(".button")];
+  //   btns.forEach((btn) => {
+  //     const id = Number(btn.dataset.id) - 1;
+  //     if (id === index) {
+  //       btns.forEach((btn) => btn.classList.remove("active"));
+  //       btn.classList.add("active");
+  //     }
+  //   });
+  // });
 
   return (
     <article className="contents">
@@ -74,8 +74,15 @@ const Contents = () => {
         <span className="company"> {company}</span>
       </p>
       <div className="buttons">
-        {data.map((btn) => {
-          return <div key={btn.id} data-id={btn.id} className="button"></div>;
+        {data.map((btn, indexBtn) => {
+          return (
+            <div
+              onClick={() => setIndex(indexBtn)}
+              className={`button ${index === indexBtn && "active"}`}
+              key={btn.id}
+              data-id={btn.id}
+            ></div>
+          );
         })}
       </div>
       <div className="prev-next-btns">
