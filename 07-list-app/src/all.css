@@ -302,6 +302,11 @@ body {
   grid-template-columns: 1fr auto;
   margin-top: 1.75rem;
 }
+.clear-random-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.25rem;
+}
 .clear-all-btn {
   cursor: pointer;
   padding: 0.75rem;
@@ -316,4 +321,8 @@ body {
 .clear-all-btn:hover,
 .submit-btn:hover {
   background-color: #5312ebdc;
+}
+.random-text {
+  text-align: center;
+  margin-top: 1rem;
 }

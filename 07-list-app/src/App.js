@@ -5,13 +5,27 @@ import { FaPlus } from "react-icons/fa";
 import { BsFillPenFill } from "react-icons/bs";
 import Alert from "./Alert";
 
+const getFromLocalStorage = () => {
+  const item = localStorage.getItem("list");
+  if (item) {
+    return JSON.parse(localStorage.getItem("list"));
+  } else {
+    return [];
+  }
+};
+
 function App() {
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getFromLocalStorage());
   const [number, setNumber] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ state: true, msg: "", type: "" });
+  const [random, setRandom] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,9 +42,7 @@ function App() {
           return item;
         })
       );
-      setName("");
-      setIsEditing(false);
-      setEditID(null);
+      setEditingDefault();
       showAlert("you edited item", "success", true);
     } else {
       setNumber(number + 1);
@@ -50,7 +62,8 @@ function App() {
     // alert
     showAlert("you cleared all list", "danger", true);
     setList([]);
-    setName("");
+    setNumber(1);
+    setEditingDefault();
   };
   // clear one item
   const clearOne = (id) => {
@@ -58,6 +71,7 @@ function App() {
     showAlert("you delete one item", "danger", true);
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
+    setEditingDefault();
   };
   // edit item
   const editItem = (id) => {
@@ -67,6 +81,20 @@ function App() {
     setEditID(id);
     setIsEditing(true);
   };
+  // set editing to default
+  const setEditingDefault = () => {
+    setName("");
+    setIsEditing(false);
+    setEditID(null);
+    setRandom("");
+  };
+  // create random
+  const createRandom = () => {
+    const randomNumber = Math.floor(Math.random() * list.length);
+    const randomItem = list[randomNumber];
+    setRandom(randomItem.title);
+  };
+
   return (
     <section>
       <div className="section-center">
@@ -90,13 +118,24 @@ function App() {
         {list.length > 0 && (
           <div className="items-container">
             <List list={list} clearOne={clearOne} editItem={editItem} />
+            {random && (
+              <p className="item-text clear-all-text random-text">
+                random activity: {random}
+              </p>
+            )}
+
             <div className="clear-all-grid">
               <p className="item-text clear-all-text">
                 you have {list.length} pending taks
               </p>
-              <button className="clear-all-btn" onClick={clearAll}>
-                clear all
-              </button>
+              <div className="clear-random-btns">
+                <button className="clear-all-btn" onClick={createRandom}>
+                  random
+                </button>
+                <button className="clear-all-btn" onClick={clearAll}>
+                  clear all
+                </button>
+              </div>
             </div>
           </div>
         )}
